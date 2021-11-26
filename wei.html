@@ -1,99 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>LOVE YOU</title>
-    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <meta name="author" content="ShaoZeMing,szm19920426@gmail.com beijing">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--嘿嘿，禁止缩放-->
+    <link rel="apple-touch-icon-precomposed" href="./public/1.png">
+    <meta name="format-detection" content="telephone=no">
+    <title>我喜欢你</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+            margin: 0px;
+            padding: 0px;
+            font-size: 25px;
+            color: #FFF;
+            font-family: "微软雅黑";
+            background: #f3961c;
+        }
+        div {
+            text-align: left;
+        }
+        .tittle {
+            width: 100%;
+            background: #f3961c;
+            top: 0px;
+            height: 100%;
+            z-index: 0;
+            position: absolute;
+            position: fixed !important;
+            display: none;
+            cursor: default;
+        }
+
+        .big {
+            font-family: "微软雅黑";
+            color: #FFF;
+            font-size: 35px;
+        }
+        .tishi {
+            position: absolute;
+            position: fixed !important;
+            z-index: 99;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+        .tishiContent {
+            border: 1px solid #FFF;
+            font-size: 18px;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+    <script type="text/javascript" src="./jscss/jquery.min.js"></script>
+    <script>
+        $(document).ready(function (e) {
+            $(document).scrollTop(300);
+            /*移动滚动条到最下方*/
+            timer = setInterval("$.change()", 3000);
+            t = 2;
+            $("#t-" + t).fadeIn();
+            $(document).click(
+                    function () {
+                        /*如果用户点击了，就取消自动播放*/
+                        clearInterval(timer);
+                        $.change();
+                    }
+            );
+
+            /*切换*/
+            $.change = function () {
+                t++;
+                if (t <= $(".tittle").length) {
+                    $(".tittle").slideUp(1500).fadeOut();
+                    $("#t-" + t).slideDown(1500).fadeIn();
+                } else {
+                    localStorage["index"] = "1";
+                    window.location = "index2.html";
+                }
+            }
+        });
+    </script>
+
 </head>
 
 <body>
-    <div class="container">
-        <div class="row col-md-3"></div>
-        <div class="row col-md-6">
-            <div class="row question">
-                <div class="col-md-6 col-xs-12">
-                    <p style="line-height: 50px;font-size: 10px;">“小姐姐，我观察你很久了”</p>
-                    <p style="line-height: 50px;font-size: 20px;">做我女朋友好不好？</p>
-                </div>
-                <div class="col-md-6 col-xs-12">
-                    <img src="http://img.mp.sohu.com/q_mini,c_zoom,w_640/upload/20170630/a93fa9d48002461c867f7ea12569617a.jpg" alt="" style="height: 200px;">
-                </div>
-            </div>
-            <div class="row question" style="margin-top: 20px;">
-                <div class="col-md-6 col-xs-6" style="text-align: center;">
-                    <button type="button" class="btn btn-success" style="width: 80%" id="no">好</button>
-                </div>
-                <div class="col-md-6 col-xs-6" style="text-align: center;">
-                    <button type="button" class="btn btn-danger" style="width: 80%" id="ok">不好</button>
-                </div>
-            </div>
-            <div class="col-md-12 col-xs-12 hide" id="success">
-                <img src='http://img3.imgtn.bdimg.com/it/u=860430458,2694681543&fm=214&gp=0.jpg' alt="" style="width: 100%;">
-            </div>
-        </div>
+<section style="text-align: center">
+    <div class="tittle" id="t-1" style="display: none;">
+        <table width="100%" border="0" height="100%">
+            <tbody>
+            <tr>
+                <td align="center"><span class="big">表白系统</span>正在初始化</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
-        <div class="row col-md-3"></div>
-
+    <div class="tittle" id="t-2" style="display: block;">
+        <table width="100%" border="0" height="100%">
+            <tbody>
+            <tr>
+                <td align="center"><span class="big">今天：</span>2021-11-27</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <script>
-        var i = 1;
-        var ok = false;
-        $(document).ready(function () {
-            (function () {
-                //先判断是否为微信浏览器
-                var ua = window.navigator.userAgent.toLowerCase();
-                if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                    //重写alert方法，alert()方法重写，不能传多余参数
-                    window.alert = function (name) {
-                        var iframe = document.createElement("IFRAME");
-                        iframe.style.display = "none";
-                        iframe.setAttribute("src", 'data:text/plain');
-                        document.documentElement.appendChild(iframe);
-                        window.frames[0].window.alert(name);
-                        iframe.parentNode.removeChild(iframe);
-                    }
-                }
-            })();
-            $("#no").click(function () {
-                alert("真的吗？你答应了？");
-                alert("给我发消息吧，爱你");
-                $(".question").addClass('hide');
-                $("#success").removeClass('hide');
-                ok = true;
-            });
-            $("#ok").click(function () {
-                switch (i) {
-                    case 1:
-                        alert("工资上交");
-                        break;
-                    case 2:
-                        alert("家务全包");
-                        break;
-                    case 3:
-                        alert("房产证写你的名字");
-                        break;
-                    case 4:
-                        alert("保大");
-                        break;
-                    case 5:
-                        alert("我妈会游泳");
-                        break;
-                    case 6:
-                        alert("不跟你吵架，会撒娇 会卖萌");
-                        break;
-                    default:
-                        alert("答应我吧");
-                }
-                i++;
-            });
-        });
-    </script>
+
+    <div class="tittle" id="t-3" style="">
+        <table width="100%" border="0" height="100%">
+            <tbody>
+            <tr>
+                <td align="center">嘿！<span class="big">那个谁·······</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+   <div class="tittle" id="t-4" style="">
+        <table width="100%" border="0" height="100%">
+            <tbody>
+            <tr>
+                <td align="center">我想对你  <span class="big">说：</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="tittle" id="t-5" style="">
+        <table width="100%" border="0" height="100%">
+            <tbody>
+            <tr>
+                <td align="center"><br>
+                    <span class="big">我爱你！</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tittle" id="t-6" style="">
+        <table width="100%" border="0" height="100%">
+            <tbody>
+            <tr>
+                <td align="center"><br>请正式：做我的<span class="big">女朋友！</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</section>
+<div align="center" class="tishi">
+    <span class="tishiContent">轻触屏幕继续</span>
+</div>
 </body>
-
 </html>
