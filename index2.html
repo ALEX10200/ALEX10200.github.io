@@ -42,7 +42,7 @@
                 <span class="keyword">while</span> (isAccept) {<br>
                 <span class="placeholder">i.waitFor(u);<br>
                 <span class="placeholder"><span class="comments">// 在回到家的时候。。。</span><br>
-                <span class="placeholder"><span class="comments">// 你的红枣豆浆温暖了我整个寒夜。</span><br>
+                <span class="placeholder"><span class="comments">// 你用红枣豆浆温暖了我整个寒夜。</span><br>
                 <span class="placeholder">isAccept = u.thinkOver();<br>
                 }<br>
                 <span class="comments">// 然后，我的心被击穿了······</span><br>
@@ -100,6 +100,7 @@
             $(this).hide();
             $("#elapseClock").show();
             var together = new Date();
+            together.setFullYear(2021.10,10);
             timeElapse(together);
             setInterval(function () {
                 timeElapse(together);
