@@ -96,16 +96,16 @@
             startHeartAnimation();
         }, 10000);
 
-        $("#accept").click(function () {
-            $(this).hide();
-            $("#elapseClock").show();
-            var together = new Date();
-            together.setFullYear(2021.10,10);
-            timeElapse(together);
-            setInterval(function () {
-                timeElapse(together);
-            }, 500);
-        })
+        // $("#accept").click(function () {
+        //     $(this).hide();
+        //     $("#elapseClock").show();
+        //     var together = new Date();
+
+        //     timeElapse(together);
+        //     setInterval(function () {
+        //         timeElapse(together);
+        //     }, 500);
+        // })
         adjustCodePosition();
         $("#code").typewriter();
     }
