@@ -65,8 +65,7 @@ window.LOVE_CONFIG = {
                 './public/years/2023-3.jpg',
                 './public/years/2023-4.jpg',
                 './public/years/2023-5.jpg',
-                './public/years/2023-6.jpg',
-                './public/years/2023-7.jpg'
+                './public/years/2023-6.jpg'
             ]
         },
         {
