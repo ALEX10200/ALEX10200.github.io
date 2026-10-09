@@ -20,8 +20,8 @@ window.LOVE_CONFIG = {
     // 领结婚证的那天
     wedding: '2023-10-10',
 
-    boy: '原彬理',
-    girl: '郭薇',
+    boy: '大原',
+    girl: '薇薇',
     nickname: '薇薇',
     signature: 'DaYuan',
 
