@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#F1F4F7">
+    <title>2023 · 我们的故事</title>
+    <link rel="stylesheet" href="./jscss/love.css">
+    <link rel="icon" href="data:,">
+</head>
+<body data-year="2023" data-effect="wave">
+<canvas id="fxLayer"></canvas>
+
+<div class="wrap">
+    <div class="year">
+        <nav class="timeline rise" id="timeline"></nav>
+
+        <header class="year-head rise">
+            <div class="year-num" id="yearNum"></div>
+            <div class="year-title" id="yearTitle"></div>
+            <p class="year-text" id="yearText"></p>
+        </header>
+
+        <section class="collage rise" id="collage"></section>
+
+        <nav class="pager rise">
+            <button class="btn btn-ghost" id="prevBtn">上一年</button>
+            <span class="spacer"></span>
+            <button class="btn" id="nextBtn">继续</button>
+        </nav>
+    </div>
+</div>
+
+<script src="./jscss/data.js"></script>
+<script src="./jscss/year.js"></script>
+<script src="./jscss/effects.js"></script>
+</body>
+</html>

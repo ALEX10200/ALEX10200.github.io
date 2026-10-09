@@ -1,86 +1,110 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>恋爱计时器</title>
-    <style>
-        body {
-            -webkit-font-smoothing: antialiased;
-            font-family: Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
-            background-image: url('./public/3.jpg');
-                        background-size: 100% 100%;
-            background-attachment: fixed;
-            font-size: 60%;
-/*             margin: 0; */
-            margin-left: 0px;
-            margin-top: 0px;
-            margin-right: 0px;
-            margin-bottom: 0px;
-        }
-        
-        h2 {
-            font-size: 180%;
-            font-weight: 400;
-        }
-        
-        .content {
-            position: absolute;
-            width: 100%;
-            top: 20%;
-            transform: translate(0, -50%);
-            text-align: center;
-        }
-        
-        .timer {
-            font-size: 180%;
-            line-height: 1.5;
-            margin: 1em 0;
-        }
-        
-        .timer b {
-            color: rgb(253, 99, 125);
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#FAF6F2">
+    <title>我们在一起多久了</title>
+    <link rel="stylesheet" href="./jscss/love.css">
+    <link rel="icon" href="data:,">
 </head>
+<body class="page-timer">
+<div class="cover-glow"></div>
 
-<body>
-    <div class="content">
-        <h2>薇薇，我们已经在一起了</h2>
-        <div class="timer">
-            <b id="d"></b> Days <b id="h"></b> Hours <b id="m"></b> Minutes <b id="s"></b> Seconds
+<div class="wrap">
+    <div class="timer-page">
+        <h2 id="title">薇薇，我们已经在一起了</h2>
+        <p class="sub" id="since">SINCE 2021 . 10 . 10</p>
+
+        <div class="tcard rise">
+            <div class="t-label">在 一 起</div>
+            <div class="t-since" id="since1">2021 . 10 . 10</div>
+            <div class="t-main"><span id="d1">0</span><small>天</small></div>
+            <div class="t-sub"><b id="h1">00</b> 时 <b id="m1">00</b> 分 <b id="s1">00</b> 秒</div>
         </div>
+
+        <div class="tcard rise">
+            <div class="t-label">已 结 婚</div>
+            <div class="t-since" id="since2">2023 . 10 . 10</div>
+            <div class="t-main"><span id="d2">0</span><small>天</small></div>
+            <div class="t-sub"><b id="h2">00</b> 时 <b id="m2">00</b> 分 <b id="s2">00</b> 秒</div>
+        </div>
+
+        <div class="sign rise">
+            两个日子，都是 10 月 10 日。<br>往后的每一天，也想和你一起算。
+            <span class="name" id="signName">- DaYuan</span>
+        </div>
+
+        <button class="btn btn-ghost rise" id="backBtn">再 看 一 遍</button>
     </div>
+</div>
 
-    <script>
-        function timer() {
-            var start = new Date(2021, 9, 10); // 2032.10.10
-            var t = new Date() - start;
-            var h = ~~(t / 1000 / 60 / 60 % 24);
-            if (h < 10) {
-                h = "0" + h;
-            }
-            var m = ~~(t / 1000 / 60 % 60);
-            if (m < 10) {
-                m = "0" + m;
-            }
+<script src="./jscss/data.js"></script>
+<script>
+    (function () {
+        var C = window.LOVE_CONFIG || {};
+        var a = String(C.anniversary || '2021-10-10');
+        var w = String(C.wedding || '');
 
-            var s = ~~(t / 1000 % 60);
-            if (s < 10) {
-                s = "0" + s;
-            }
-            document.getElementById('d').innerHTML = ~~(t / 1000 / 60 / 60 / 24);
-            document.getElementById('h').innerHTML = h;
-            document.getElementById('m').innerHTML = m;
-            document.getElementById('s').innerHTML = s;
+        function parse(s) {
+            var p = s.split('-');
+            return new Date(+p[0], +p[1] - 1, +p[2]);
         }
-        timer();
-        setInterval(timer, 1000);
-    </script>
-</body>
+        function fmt(s) { return s.replace(/-/g, ' . '); }
 
+        document.getElementById('since').textContent = 'SINCE ' + fmt(a);
+        document.getElementById('since1').textContent = fmt(a);
+        document.getElementById('since2').textContent = w ? fmt(w) : '待填';
+        if (C.nickname) document.getElementById('title').textContent = C.nickname + '，我们已经在一起了';
+        if (C.signature) document.getElementById('signName').textContent = '- ' + C.signature;
+
+        var startA = parse(a);
+        var startW = w ? parse(w) : null;
+
+        var cache = {};
+        function set(id, v) {
+            if (cache[id] === v) return;
+            cache[id] = v;
+            document.getElementById(id).textContent = v;
+        }
+        function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+        function tick(start, p) {
+            var t = Date.now() - start.getTime();
+            var d = Math.floor(t / 86400000);
+            set('d' + p, d);
+            set('h' + p, pad(Math.floor(t / 3600000) % 24));
+            set('m' + p, pad(Math.floor(t / 60000) % 60));
+            set('s' + p, pad(Math.floor(t / 1000) % 60));
+        }
+
+        function loop() {
+            tick(startA, 1);
+            if (startW) tick(startW, 2);
+        }
+        loop();
+        setInterval(loop, 1000);
+
+        document.getElementById('backBtn').addEventListener('click', function () { location.href = '2021.html'; });
+
+        var els = document.querySelectorAll('.rise');
+        requestAnimationFrame(function () {
+            for (var i = 0; i < els.length; i++) {
+                (function (el, d) { setTimeout(function () { el.classList.add('in'); }, d); })(els[i], 100 + i * 130);
+            }
+        });
+
+        /* 音乐续播 */
+        try {
+            if (sessionStorage.getItem('loveMusic') === '1') {
+                var au = new Audio('./public/shangfen.mp3');
+                au.loop = true;
+                var pr = au.play();
+                if (pr && pr.catch) pr.catch(function () { });
+            }
+        } catch (e) { }
+    })();
+</script>
+</body>
 </html>

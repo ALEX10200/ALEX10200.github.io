@@ -1,161 +1,166 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width,user-scalable=no">
-    <meta name="author" content="ShaoZeMing,szm19920426@gmail.com beijing">
-
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-
-    <!--嘿嘿，禁止缩放-->
-    <link rel="apple-touch-icon-precomposed" href="./public/1.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>我喜欢你</title>
-    <style type="text/css">
-        body {
-            text-align: center;
-            margin: 0px;
-            padding: 0px;
-            font-size: 25px;
-            color: #FFF;
-            font-family: "微软雅黑";
-            background: #f3961c;
-        }
-        div {
-            text-align: left;
-        }
-        .tittle {
-            width: 100%;
-            background: #f3961c;
-            top: 0px;
-            height: 100%;
-            z-index: 0;
-            position: absolute;
-            position: fixed !important;
-            display: none;
-            cursor: default;
-        }
+    <meta name="theme-color" content="#FAF6F2">
+    <title>我们的故事</title>
+    <link rel="stylesheet" href="./jscss/love.css">
+    <link rel="icon" href="data:,">
+</head>
+<body class="page-cover">
+<div class="cover-glow"></div>
 
-        .big {
-            font-family: "微软雅黑";
-            color: #FFF;
-            font-size: 35px;
-        }
-        .tishi {
-            position: absolute;
-            position: fixed !important;
-            z-index: 99;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-        }
-        .tishiContent {
-            border: 1px solid #FFF;
-            font-size: 18px;
-            padding: 5px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-    </style>
-    <script type="text/javascript" src="./jscss/jquery.min.js"></script>
-    <script>
-        $(document).ready(function (e) {
-            $(document).scrollTop(300);
-            /*移动滚动条到最下方*/
-            timer = setInterval("$.change()", 3000);
-            t = 2;
-            $("#t-" + t).fadeIn();
-            $(document).click(
-                    function () {
-                        /*如果用户点击了，就取消自动播放*/
-                        clearInterval(timer);
-                        $.change();
-                    }
-            );
+<div class="wrap">
+    <div class="cover">
 
-            /*切换*/
-            $.change = function () {
-                t++;
-                if (t <= $(".tittle").length) {
-                    $(".tittle").slideUp(1500).fadeOut();
-                    $("#t-" + t).slideDown(1500).fadeIn();
-                } else {
-                    localStorage["index"] = "1";
-                    window.location = "index2.html";
-                }
+        <!-- ===== 两个戴眼镜的理工生 · 手绘 Q 版头像 ===== -->
+        <div class="avatars rise">
+
+            <!-- 他：短发 · 方框眼镜 · 格子衬衫 -->
+            <svg class="avatar left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="原彬理">
+                <defs>
+                    <clipPath id="clothBoy">
+                        <path d="M30 200 Q30 156 100 150 Q170 156 170 200 Z"/>
+                    </clipPath>
+                </defs>
+
+                <circle cx="100" cy="100" r="92" fill="#A8B5C4" opacity=".26"/>
+                <path d="M30 200 Q30 156 100 150 Q170 156 170 200 Z" fill="#A8B5C4"/>
+                <g clip-path="url(#clothBoy)" opacity=".5" stroke="#7F94A8" stroke-width="6">
+                    <path d="M60 140 V200"/><path d="M84 140 V200"/><path d="M116 140 V200"/><path d="M140 140 V200"/>
+                    <path d="M30 166 H170"/><path d="M30 184 H170"/>
+                </g>
+
+                <rect x="86" y="116" width="28" height="36" rx="13" fill="#EBCDBB"/>
+                <ellipse cx="100" cy="84" rx="62" ry="58" fill="#5A4A44"/>
+                <ellipse cx="100" cy="92" rx="52" ry="48" fill="#F8DFCF"/>
+                <path d="M50 76 Q72 50 100 56 Q128 50 150 76 Q124 62 100 66 Q76 62 50 76 Z" fill="#5A4A44"/>
+
+                <ellipse cx="66" cy="114" rx="10" ry="5.5" fill="#E9A6A0" opacity=".38"/>
+                <ellipse cx="134" cy="114" rx="10" ry="5.5" fill="#E9A6A0" opacity=".38"/>
+
+                <ellipse cx="78" cy="100" rx="7.5" ry="9.5" fill="#3E3530"/>
+                <ellipse cx="122" cy="100" rx="7.5" ry="9.5" fill="#3E3530"/>
+                <circle cx="75.4" cy="96.6" r="2.6" fill="#fff" opacity=".9"/>
+                <circle cx="119.4" cy="96.6" r="2.6" fill="#fff" opacity=".9"/>
+
+                <g stroke="#4A3F3A" stroke-width="3.2" stroke-linecap="round" fill="none">
+                    <path d="M66 84 Q78 79 90 84"/>
+                    <path d="M110 84 Q122 79 134 84"/>
+                </g>
+                <path d="M92 122 Q100 129 108 122" stroke="#C98B8B" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+                <g stroke="#6E665F" stroke-width="3.2" fill="rgba(255,255,255,.12)">
+                    <rect x="58" y="86" width="40" height="30" rx="11"/>
+                    <rect x="102" y="86" width="40" height="30" rx="11"/>
+                </g>
+                <g stroke="#6E665F" stroke-width="3" fill="none" stroke-linecap="round">
+                    <path d="M98 99 Q100 96 102 99"/>
+                    <path d="M58 92 L44 87"/>
+                    <path d="M142 92 L156 87"/>
+                </g>
+            </svg>
+
+            <!-- 她：马尾 · 圆框眼镜 · 工装 -->
+            <svg class="avatar right" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="郭薇">
+                <circle cx="100" cy="100" r="92" fill="#C9A9A6" opacity=".28"/>
+
+                <path d="M148 62 C176 70 184 104 170 130 C160 112 154 92 148 78 Z" fill="#4A4048"/>
+                <circle cx="151" cy="70" r="7" fill="#C9A9A6"/>
+
+                <path d="M30 200 Q30 156 100 150 Q170 156 170 200 Z" fill="#D8C7C0"/>
+                <path d="M84 150 L100 173 L116 150" stroke="#C1A9A2" stroke-width="7" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+                <g fill="#C9A9A6">
+                    <circle cx="143" cy="172" r="2.2"/><circle cx="137.5" cy="181.5" r="2.2"/>
+                    <circle cx="126.5" cy="181.5" r="2.2"/><circle cx="121" cy="172" r="2.2"/>
+                    <circle cx="126.5" cy="162.5" r="2.2"/><circle cx="137.5" cy="162.5" r="2.2"/>
+                </g>
+                <circle cx="132" cy="172" r="9" fill="#FFFDFB" stroke="#C9A9A6" stroke-width="2.5"/>
+                <circle cx="132" cy="172" r="3" fill="#C9A9A6"/>
+
+                <rect x="86" y="116" width="28" height="36" rx="13" fill="#EBCDBB"/>
+                <ellipse cx="100" cy="84" rx="62" ry="58" fill="#4A4048"/>
+                <ellipse cx="100" cy="92" rx="52" ry="48" fill="#F8DFCF"/>
+                <path d="M50 76 Q72 50 100 56 Q128 50 150 76 Q124 62 100 66 Q76 62 50 76 Z" fill="#4A4048"/>
+                <path d="M50 82 Q43 108 49 134 Q58 108 60 84 Z" fill="#4A4048"/>
+                <path d="M150 82 Q157 108 151 134 Q142 108 140 84 Z" fill="#4A4048"/>
+
+                <ellipse cx="66" cy="114" rx="10" ry="5.5" fill="#E9A6A0" opacity=".42"/>
+                <ellipse cx="134" cy="114" rx="10" ry="5.5" fill="#E9A6A0" opacity=".42"/>
+
+                <ellipse cx="78" cy="100" rx="7.5" ry="9.5" fill="#3E3530"/>
+                <ellipse cx="122" cy="100" rx="7.5" ry="9.5" fill="#3E3530"/>
+                <circle cx="75.4" cy="96.6" r="2.6" fill="#fff" opacity=".9"/>
+                <circle cx="119.4" cy="96.6" r="2.6" fill="#fff" opacity=".9"/>
+
+                <g stroke="#4A4048" stroke-width="3" stroke-linecap="round" fill="none">
+                    <path d="M66 84 Q78 79.5 90 84"/>
+                    <path d="M110 84 Q122 79.5 134 84"/>
+                </g>
+                <path d="M92 122 Q100 130 108 122" stroke="#C98B8B" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+                <g stroke="#6E665F" stroke-width="3.2" fill="rgba(255,255,255,.12)">
+                    <circle cx="78" cy="101" r="21"/>
+                    <circle cx="122" cy="101" r="21"/>
+                </g>
+                <g stroke="#6E665F" stroke-width="3" fill="none" stroke-linecap="round">
+                    <path d="M99 100 Q100 97 101 100"/>
+                    <path d="M58 96 L44 91"/>
+                    <path d="M142 96 L156 91"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="avatar-names rise">
+            <span id="nameBoy">原彬理</span>
+            <span class="dot"></span>
+            <span id="nameGirl">郭薇</span>
+        </div>
+
+        <p class="cover-sub rise">两个戴眼镜的理工生，把日子过成了答案</p>
+
+        <div class="wed-date rise">
+            <span class="label">领 证 日</span>
+            <span class="value" id="wedDate">2023 . 10 . 10</span>
+        </div>
+
+        <button class="btn rise" id="startBtn">开 始 回 忆</button>
+        <p class="cover-tip">建议戴上耳机 · 横滑可翻页</p>
+    </div>
+</div>
+
+<script src="./jscss/data.js"></script>
+<script>
+    (function () {
+        var C = window.LOVE_CONFIG || {};
+        if (C.boy) document.getElementById('nameBoy').textContent = C.boy;
+        if (C.girl) document.getElementById('nameGirl').textContent = C.girl;
+        if (C.wedding) document.getElementById('wedDate').textContent = C.wedding.replace(/-/g, ' . ');
+
+        var els = document.querySelectorAll('.rise');
+        requestAnimationFrame(function () {
+            for (var i = 0; i < els.length; i++) {
+                (function (el, d) { setTimeout(function () { el.classList.add('in'); }, d); })(els[i], 120 + i * 130);
             }
         });
-    </script>
 
-</head>
+        var audio = null;
+        function play() {
+            if (audio) return;
+            audio = new Audio('./public/shangfen.mp3');
+            audio.loop = true;
+            var p = audio.play();
+            if (p && p.catch) p.catch(function () { });
+            try { sessionStorage.setItem('loveMusic', '1'); } catch (e) { }
+        }
 
-<body>
-<section style="text-align: center">
-    <div class="tittle" id="t-1" style="display: none;">
-        <table width="100%" border="0" height="100%">
-            <tbody>
-            <tr>
-                <td align="center"><span class="big">表白系统</span>正在初始化</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="tittle" id="t-2" style="display: block;">
-        <table width="100%" border="0" height="100%">
-            <tbody>
-            <tr>
-                <td align="center"><span class="big">今天：</span>2021-11-27</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="tittle" id="t-3" style="">
-        <table width="100%" border="0" height="100%">
-            <tbody>
-            <tr>
-                <td align="center">嘿！<span class="big">那个谁·······</span></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-   <div class="tittle" id="t-4" style="">
-        <table width="100%" border="0" height="100%">
-            <tbody>
-            <tr>
-                <td align="center">我想对你  <span class="big">说：</span></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-
-    <div class="tittle" id="t-5" style="">
-        <table width="100%" border="0" height="100%">
-            <tbody>
-            <tr>
-                <td align="center"><br>
-                    <span class="big">我爱你！</span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="tittle" id="t-6" style="">
-        <table width="100%" border="0" height="100%">
-            <tbody>
-            <tr>
-                <td align="center"><br>请正式：做我的<span class="big">女朋友！</span></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-</section>
-<div align="center" class="tishi">
-    <span class="tishiContent">轻触屏幕继续</span>
-</div>
+        document.getElementById('startBtn').addEventListener('click', function () {
+            play();
+            setTimeout(function () { location.href = 'index2.html'; }, 420);
+        });
+    })();
+</script>
 </body>
 </html>

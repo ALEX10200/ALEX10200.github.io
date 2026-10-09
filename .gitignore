@@ -1,0 +1,16 @@
+# 编辑器 / IDE
+.idea/
+.vscode/
+.codebuddy/
+
+# 本地排查临时文件（无头浏览器配置、截图、DOM 导出、服务器日志）
+.edgeprof*/
+.ep*/
+_*.html
+_*.png
+_serve.log
+_serve.err
+compress_photos.ps1
+
+# 压缩前的照片原图备份
+_originals/
