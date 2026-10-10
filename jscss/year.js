@@ -15,11 +15,33 @@
 
     var cur = list[idx];
 
+    var CN = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+
     /* ---------- 文案 ---------- */
     var $ = function (id) { return document.getElementById(id); };
     if ($('yearNum')) $('yearNum').textContent = cur.year;
-    if ($('yearTitle')) $('yearTitle').textContent = cur.title || '';
+    /* 小标签 = 章节编号 + 年度短标题 */
+    if ($('yearTitle')) {
+        $('yearTitle').textContent = '第 ' + (CN[idx] || (idx + 1)) + ' 章 · ' + (cur.title || '');
+    }
     if ($('yearText')) $('yearText').textContent = cur.text || '';
+
+    /* 年份头重排为「小标签 → 金线 → 大年份 → 正文 → 短诗」 */
+    var head = document.querySelector('.year-head');
+    if (head && $('yearNum') && $('yearTitle') && $('yearText')) {
+        var hr = document.createElement('div');
+        hr.className = 'hr';
+        head.appendChild($('yearTitle'));
+        head.appendChild(hr);
+        head.appendChild($('yearNum'));
+        head.appendChild($('yearText'));
+        if (cur.poem) {
+            var poem = document.createElement('p');
+            poem.className = 'year-poem';
+            poem.textContent = cur.poem;
+            head.appendChild(poem);
+        }
+    }
     document.title = cur.year + ' · ' + (cur.title || '我们的故事');
 
     /* ---------- 年份进度条 ---------- */
@@ -155,9 +177,9 @@
     /* ---------- 翻页 ---------- */
     function go(step) {
         var t = idx + step;
-        if (t < 0) { location.href = 'index2.html'; return; }
-        if (t >= list.length) { location.href = 'index3.html'; return; }
-        location.href = list[t].year + '.html';
+        if (t < 0) { loveGo('index2.html'); return; }
+        if (t >= list.length) { loveGo('future.html'); return; }
+        loveGo(list[t].year + '.html');
     }
 
     var prevBtn = $('prevBtn'), nextBtn = $('nextBtn');
@@ -187,14 +209,4 @@
             (function (el, d) { setTimeout(function () { el.classList.add('in'); }, d); })(els[i], i * 120);
         }
     });
-
-    /* ---------- 音乐续播 ---------- */
-    try {
-        if (sessionStorage.getItem('loveMusic') === '1') {
-            var a = new Audio('./public/shangfen.mp3');
-            a.loop = true;
-            var pr = a.play();
-            if (pr && pr.catch) pr.catch(function () { });
-        }
-    } catch (err) { }
 })();

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#F8F2EA">
+    <title>往后余生 · 还有很多年 · 我们的故事</title>
+    <meta name="description" content="大原写给薇薇的以后：往后的日子，还想和你一起算。">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="往后余生 · 还有很多年">
+    <meta property="og:description" content="六年只是开头，往后还长。">
+    <meta property="og:image" content="https://alex10200.github.io/public/years/2026-1.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hanzi.pro/webfonts-lxgw-wenkai@0.1.0/swap.css">
+    <link rel="stylesheet" href="./jscss/love.css">
+    <script src="./jscss/page.js"></script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cpath%20d='M16%2028C16%2028%203%2019%203%2011.5%203%207.4%206.1%205%209.3%205%2012.2%205%2014.6%206.8%2016%209.3%2017.4%206.8%2019.8%205%2022.7%205%2025.9%205%2029%207.4%2029%2011.5%2029%2019%2016%2028%2016%2028Z'%20fill='%23C9A9A6'/%3E%3C/svg%3E">
+</head>
+<body data-year="2026" data-effect="dust">
+<canvas id="fxLayer"></canvas>
+
+<div class="wrap">
+    <div class="future">
+        <p class="sub rise" id="fuLabel">往 后 余 生</p>
+        <div class="hr"></div>
+        <h2 class="rise" id="fuTitle">还有很多年</h2>
+        <p class="future-text rise" id="fuText"></p>
+        <p class="future-poem rise" id="fuPoem"></p>
+
+        <!-- 印章式落款 -->
+        <div class="seal rise"><span id="fuSealName">大原</span></div>
+
+        <button class="btn rise" id="toTimer">还 有 一 件 事</button>
+    </div>
+</div>
+
+<script src="./jscss/data.js"></script>
+<script src="./jscss/effects.js"></script>
+<script>
+    (function () {
+        var C = window.LOVE_CONFIG || {};
+        var F = C.future || {};
+
+        function set(id, v) { var el = document.getElementById(id); if (el && v) el.textContent = v; }
+        set('fuLabel', F.label);
+        set('fuTitle', F.title);
+        set('fuText', F.text);
+        set('fuPoem', F.poem);
+        set('fuSealName', F.seal || C.boy);
+
+        var els = document.querySelectorAll('.rise');
+        requestAnimationFrame(function () {
+            for (var i = 0; i < els.length; i++) {
+                (function (el, d) { setTimeout(function () { el.classList.add('in'); }, d); })(els[i], 120 + i * 130);
+            }
+        });
+
+        document.getElementById('toTimer').addEventListener('click', function () {
+            loveGo('index3.html');
+        });
+    })();
+</script>
+</body>
+</html>
