@@ -23,6 +23,8 @@
     --glow: rgba(201, 169, 166, .35);
 
     --font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    /* 展示字体：霞鹜文楷（Web 字体，手机端也能显示手写感）+ 系统楷体兜底 */
+    --font-display: "LXGW WenKai", "Kaiti SC", "STKaiti", "KaiTi", "楷体", "PingFang SC", serif;
 }
 
 /* 六年配色：热烈 → 平缓 → 温馨 */
@@ -103,6 +105,57 @@ body {
 /* 上浮淡入 */
 .rise { opacity: 0; transform: translateY(18px); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); }
 .rise.in { opacity: 1; transform: none; }
+
+/* ============================================================
+ *  质感 · 展示字体 · 纸纹 · 花瓣
+ * ============================================================ */
+
+/* 标题与需要手写感的文案统一用展示字体 */
+.story h1, .avatar-names, .cover-sub, .wed-date .label, .wed-date .value,
+.year-num, .year-title, .year-text, .polaroid .cap,
+.timer-page h2, .tcard .t-label, .tcard .t-main, .sign, .sign .name {
+    font-family: var(--font-display);
+}
+
+/* 纸张颗粒：极淡的一层，铺满全屏（不挡点击） */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    opacity: .05;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='140'%20height='140'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='.85'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='140'%20height='140'%20filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 封面飘落花瓣 */
+.petals { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.petals i {
+    position: absolute;
+    top: -8vh;
+    width: var(--s, 10px);
+    height: var(--s, 10px);
+    border-radius: 62% 0 62% 0;
+    background: linear-gradient(140deg, #FBDBD4, #E3B0A9);
+    opacity: 0;
+    animation: petalFall var(--t, 17s) linear infinite;
+    animation-delay: var(--d, 0s);
+}
+.petals i:nth-child(1) { left: 6%;  --s: 9px;  --t: 17s; --d: 0s;   --drift: 46px; }
+.petals i:nth-child(2) { left: 20%; --s: 12px; --t: 21s; --d: -4s;  --drift: -38px; }
+.petals i:nth-child(3) { left: 33%; --s: 8px;  --t: 15s; --d: -9s;  --drift: 30px; }
+.petals i:nth-child(4) { left: 47%; --s: 11px; --t: 23s; --d: -2s;  --drift: -52px; }
+.petals i:nth-child(5) { left: 61%; --s: 10px; --t: 18s; --d: -12s; --drift: 40px; }
+.petals i:nth-child(6) { left: 75%; --s: 13px; --t: 20s; --d: -6s;  --drift: -34px; }
+.petals i:nth-child(7) { left: 88%; --s: 9px;  --t: 16s; --d: -14s; --drift: 28px; }
+.petals i:nth-child(8) { left: 54%; --s: 7px;  --t: 19s; --d: -17s; --drift: 58px; }
+
+@keyframes petalFall {
+    0%   { opacity: 0; transform: translate(0, 0) rotate(0deg); }
+    12%  { opacity: .75; }
+    85%  { opacity: .5; }
+    100% { opacity: 0; transform: translate(var(--drift, 40px), 112vh) rotate(340deg); }
+}
 
 /* ============================================================
  *  封面  index.html
@@ -230,7 +283,17 @@ body {
 .year { position: relative; z-index: 1; padding: 26px 0 40px; }
 
 /* 年份进度条 */
-.timeline { display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 26px; }
+.timeline { position: relative; display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 26px; }
+/* 节点之间的连线 */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    top: 1px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(138, 129, 124, .3) 16%, rgba(138, 129, 124, .3) 84%, transparent);
+}
 .timeline .node {
     display: flex;
     flex-direction: column;
@@ -292,6 +355,23 @@ body {
     to   { opacity: 1; }
 }
 .polaroid:hover { box-shadow: var(--shadow-lg); z-index: 2; }
+
+/* 相纸顶角的胶带 */
+.polaroid::before,
+.polaroid::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    z-index: 3;
+    width: 54px;
+    height: 16px;
+    background: rgba(226, 206, 176, .74);
+    box-shadow: 0 1px 3px rgba(74, 68, 65, .16);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7px, #000 calc(100% - 7px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 7px, #000 calc(100% - 7px), transparent 100%);
+}
+.polaroid::before { left: -16px; transform: rotate(-40deg); }
+.polaroid::after { right: -16px; transform: rotate(40deg); }
 .polaroid .frame {
     position: relative;
     width: 100%;
@@ -307,7 +387,10 @@ body {
     display: block;
     transition: transform .8s var(--ease);
 }
+/* 照片就位后淡入；不写初始 opacity:0，避免加载异常时照片被永久隐藏 */
+.polaroid:not(.is-placeholder) img { animation: photoIn .7s var(--ease); }
 .polaroid:hover img { transform: scale(1.05); }
+@keyframes photoIn { from { opacity: 0; } to { opacity: 1; } }
 .polaroid .cap {
     position: absolute;
     left: 0;
@@ -441,7 +524,7 @@ body {
 .tcard .t-sub b { font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
 
 .sign { margin-top: 34px; font-size: 14px; letter-spacing: .12em; color: var(--ink-2); line-height: 2; }
-.sign .name { display: block; margin-top: 8px; font-size: 13px; font-style: italic; letter-spacing: .2em; color: var(--ink-3); }
+.sign .name { display: block; margin-top: 8px; font-size: 14px; letter-spacing: .18em; color: var(--ink-3); }
 
 /* ============================================================
  *  响应式与降级
